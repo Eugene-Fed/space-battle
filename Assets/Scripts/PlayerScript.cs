@@ -9,7 +9,13 @@ public class PlayerScript : MonoBehaviour
     public float tiltRoll; // наклон вбок
     public float tiltPitch; // наклон вперед-назад
     public float xMin, xMax, zMin, zMax;
+    public float shotDelay;
+
+    public GameObject laserShotYellow;
+    public GameObject laserGunYellow;
     Rigidbody playerShip;
+
+    float nextShotTime; 
     
     // Start is called before the first frame update
     void Start()
@@ -30,5 +36,13 @@ public class PlayerScript : MonoBehaviour
         playerShip.position = new Vector3(xPosition, 0, zPosition);
 
         playerShip.rotation = Quaternion.Euler(playerShip.velocity.z * tiltPitch, 0, -playerShip.velocity.x * tiltRoll);
+
+        if (Time.time > nextShotTime && Input.GetButton("Fire1"))
+        {
+            Instantiate(laserShotYellow, laserGunYellow.transform.position, Quaternion.identity);
+            nextShotTime = Time.time + shotDelay;
+        }
+
+        
     }
 }
