@@ -995,6 +995,9 @@ MonoBehaviour:
     type: 3}
   asteroid3: {fileID: 1396793286700524742, guid: 4fabdcfb3e4da7f45bbf52d9fb7b9dba,
     type: 3}
+  enemy1: {fileID: 0}
+  enemy2: {fileID: 0}
+  enemy3: {fileID: 0}
   minDelay: 0.5
   maxDelay: 1.5
 --- !u!23 &2104944695

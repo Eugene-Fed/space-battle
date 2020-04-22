@@ -7,10 +7,13 @@ public class EmitterScript : MonoBehaviour
     GameObject asteroid;
     
     //создаю список, по индексам которого проходит Random.Range(). 
-    List<GameObject> asteroidList;
+    List<GameObject> enemyList;
     public GameObject asteroid1;
     public GameObject asteroid2;
     public GameObject asteroid3;
+    public GameObject enemy1;
+    public GameObject enemy2;
+    public GameObject enemy3;
     
     public float minDelay, maxDelay;
 
@@ -19,7 +22,7 @@ public class EmitterScript : MonoBehaviour
     void Start()
     {
         //Исходя из списка, на каждый большой астероид получаем 2 средних и 3 мелких
-        asteroidList = new List<GameObject>(){asteroid1, asteroid1, asteroid1, asteroid2, asteroid2, asteroid3};
+        enemyList = new List<GameObject>(){asteroid1, asteroid1, asteroid1, asteroid2, asteroid2, asteroid3};
     }
 
     // Update is called once per frame
@@ -27,8 +30,8 @@ public class EmitterScript : MonoBehaviour
     {
         if (Time.time > nextLaunchTime)
         {
-            int asteroidIndex = Random.Range(0, asteroidList.Count); // получаем рандомный индекс астероида
-            asteroid = asteroidList[asteroidIndex]; //получаем астероид в соответствии с рандомным индексом
+            int asteroidIndex = Random.Range(0, enemyList.Count); // получаем рандомный индекс астероида
+            asteroid = enemyList[asteroidIndex]; //получаем астероид в соответствии с рандомным индексом
             
             float xPosition = Random.Range(-transform.localScale.x / 2, transform.localScale.x / 2);
             float zPosition = transform.position.z;

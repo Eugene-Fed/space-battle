@@ -7,7 +7,7 @@ public class AsteroidScript : MonoBehaviour
     public float rotationSpeed;
     public float minSpeed, maxSpeed;
     public int health; //дает астероиду единицы здоровья
-    public GameObject asteroidExposion;
+    public GameObject asteroidExplosion;
     public GameObject playerExplosion;
     
     // Start is called before the first frame update
@@ -28,7 +28,18 @@ public class AsteroidScript : MonoBehaviour
             return;
         }
         
-        Destroy(gameObject);
+        // switch other.tag
+        // {
+        //     case 1:
+        //         break;
+        //     case 2:
+        //         break;
+        //     default:
+        //         break;
+        // }
+
+        DestroyAsteroid();
+        //Destroy(gameObject);
         Destroy(other.gameObject);
 
         if (other.tag == "Player")
@@ -36,11 +47,12 @@ public class AsteroidScript : MonoBehaviour
             Instantiate(playerExplosion, other.transform.position, Quaternion.identity);
         }
 
-        Instantiate(asteroidExposion, transform.position, Quaternion.identity);
+        //Instantiate(asteroidExplosion, transform.position, Quaternion.identity);
     }
 
     private void DestroyAsteroid()
     {
-        //
+        Destroy(gameObject);
+        Instantiate(asteroidExplosion, transform.position, Quaternion.identity);
     }
 }
