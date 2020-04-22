@@ -280,6 +280,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minSpeed: 15
   maxSpeed: 35
+  minSpeedX: -10
+  maxSpeedX: 10
   greenShotDelay: 1
   health: 3
   shieldHelth: 2
@@ -291,6 +293,8 @@ MonoBehaviour:
   laserGunRedLeft: {fileID: 6305572256285570762}
   laserGunRedRight: {fileID: 8703320884961250036}
   playerExplosion: {fileID: 1674766840723011950, guid: 86fa86d56f598534bb33dffab3097dae,
+    type: 3}
+  playerShip: {fileID: 5836979040351642614, guid: bb195af8656a3ee47af7f8ae986bbbdd,
     type: 3}
 --- !u!1 &6988018033316694631
 GameObject:
