@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6642254775494292447}
   m_Layer: 0
-  m_Name: LazerGunGreenRight
+  m_Name: LazerGunRedRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: -4189942383685768213}
   m_Layer: 0
   m_Name: Enemy1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -160,10 +160,10 @@ MonoBehaviour:
   maxSpeed: 35
   greenShotDelay: 1
   health: 1
-  laserShotGreen: {fileID: 6245142932509626399, guid: a5e8dc99f6f2b8a4d9d3be9d699a8998,
+  laserShotRedEnemy: {fileID: 3197264417128449992, guid: fa52c580f781c8a44bb889a6646f1844,
     type: 3}
-  laserGunGreenLeft: {fileID: 5435450215729869520}
-  laserGunGreenRight: {fileID: 3491188843977619279}
+  laserGunRedLeft: {fileID: 5435450215729869520}
+  laserGunRedRight: {fileID: 3491188843977619279}
 --- !u!1 &3510842233431035251
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,7 +180,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3507503539684420711
 Transform:
   m_ObjectHideFlags: 0
@@ -204,7 +204,7 @@ BoxCollider:
   m_GameObject: {fileID: 3510842233431035251}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 5.2, y: 0.2, z: 2.5}
   m_Center: {x: 0, y: 0, z: 0}
@@ -224,7 +224,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3508894121611334215
 Transform:
   m_ObjectHideFlags: 0
@@ -248,7 +248,7 @@ BoxCollider:
   m_GameObject: {fileID: 3510957978131968953}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.8, y: 0.7, z: 3.3}
   m_Center: {x: 0, y: 0, z: 0}
@@ -268,7 +268,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3507455225765878689
 Transform:
   m_ObjectHideFlags: 0
@@ -292,7 +292,7 @@ BoxCollider:
   m_GameObject: {fileID: 3511031005662009091}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.8, y: 0.7, z: 3.3}
   m_Center: {x: 0, y: 0, z: 0}
@@ -312,7 +312,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3507712773564019929
 Transform:
   m_ObjectHideFlags: 0
@@ -336,7 +336,7 @@ BoxCollider:
   m_GameObject: {fileID: 3511078348931682937}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.9, y: 0.8, z: 3}
   m_Center: {x: 0, y: 0, z: 0}
@@ -355,7 +355,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3508928007021517985
 Transform:
   m_ObjectHideFlags: 0
@@ -392,7 +392,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3507317079889939117
 Transform:
   m_ObjectHideFlags: 0
@@ -416,7 +416,7 @@ BoxCollider:
   m_GameObject: {fileID: 3511650471544381657}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 0.7, z: 9}
   m_Center: {x: 0, y: 0, z: 0}
@@ -436,7 +436,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3509203271043819897
 Transform:
   m_ObjectHideFlags: 0
@@ -460,7 +460,7 @@ BoxCollider:
   m_GameObject: {fileID: 3512275655260695425}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.9, y: 0.8, z: 3}
   m_Center: {x: 0, y: 0, z: 0}
@@ -474,7 +474,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1202853268838110328}
   m_Layer: 0
-  m_Name: LazerGunGreenLeft
+  m_Name: LazerGunRedLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

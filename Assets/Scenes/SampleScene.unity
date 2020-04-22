@@ -822,6 +822,8 @@ MonoBehaviour:
     type: 3}
   laserGunGreenLeft: {fileID: 1927286674}
   laserGunGreenRight: {fileID: 1185904368}
+  playerExplosion: {fileID: 1674766840723011950, guid: 86fa86d56f598534bb33dffab3097dae,
+    type: 3}
 --- !u!65 &1497244158
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -18,6 +18,7 @@ public class PlayerScript : MonoBehaviour
     public GameObject laserShotGreen;
     public GameObject laserGunGreenLeft;
     public GameObject laserGunGreenRight;
+    public GameObject playerExplosion;
 
     Rigidbody playerShip;
 
@@ -61,7 +62,25 @@ public class PlayerScript : MonoBehaviour
 
             nextGreenShotTime = Time.time + greenShotDelay;
         }
+    }
 
-        
+    private void OnTriggerEnter(Collider other)
+    {
+        switch (other.tag)
+        {
+            case "RedEnemyLaser": //разбито на разные версии Лазера на случай, если разные лазеры будут забирать разное количество HP, а не уничтожать сразу
+                Destroy(other.gameObject);
+                Destroy(gameObject);
+                Instantiate(playerExplosion, transform.position, Quaternion.identity);
+                break;
+            case "Enemy":
+                Destroy(gameObject);
+                Instantiate(playerExplosion, transform.position, Quaternion.identity);
+                Destroy(other.gameObject);
+                Instantiate(playerExplosion, other.transform.position, Quaternion.identity);
+                break;
+            default:
+                break;
+        }
     }
 }

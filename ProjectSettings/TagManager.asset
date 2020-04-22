@@ -9,6 +9,8 @@ TagManager:
   - Asteroid
   - GreenLaser
   - YellowLaser
+  - Enemy
+  - RedEnemyLaser
   layers:
   - Default
   - TransparentFX

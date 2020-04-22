@@ -9,9 +9,9 @@ public class EnemyScript : MonoBehaviour
     public float greenShotDelay;
     public int health; //дает врагу единицы здоровья
 
-    public GameObject laserShotGreen;
-    public GameObject laserGunGreenLeft;
-    public GameObject laserGunGreenRight;
+    public GameObject laserShotRedEnemy;
+    public GameObject laserGunRedLeft;
+    public GameObject laserGunRedRight;
 
     float nextGreenShotTime;
     Rigidbody enemyShip;
@@ -35,9 +35,9 @@ public class EnemyScript : MonoBehaviour
 
         if (Time.time > nextGreenShotTime)
         {
-            //Instantiate(laserShotGreen, laserGunGreenLeft.transform.position, Quaternion.identity);
-            Instantiate(laserShotGreen, laserGunGreenLeft.transform.position, Quaternion.Euler(0, 180, 0));
-            Instantiate(laserShotGreen, laserGunGreenRight.transform.position, Quaternion.Euler(0, 180, 0));
+            //Instantiate(laserShotRedEnemy, laserGunRedLeft.transform.position, Quaternion.identity);
+            Instantiate(laserShotRedEnemy, laserGunRedLeft.transform.position, Quaternion.Euler(0, 180, 0));
+            Instantiate(laserShotRedEnemy, laserGunRedRight.transform.position, Quaternion.Euler(0, 180, 0));
 
             nextGreenShotTime = Time.time + greenShotDelay;
         }

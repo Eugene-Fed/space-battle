@@ -28,7 +28,7 @@ public class AsteroidScript : MonoBehaviour
             return;
         }
         
-        // switch other.tag
+        // switch (other.tag)
         // {
         //     case "Player":
         //         break;
