@@ -483,6 +483,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1143574227}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1185904368
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1185904369}
+  m_Layer: 0
+  m_Name: LazerGunGreenRight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1185904369
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185904368}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.2, y: -0.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1497244155}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1226934605
 GameObject:
   m_ObjectHideFlags: 0
@@ -743,6 +773,8 @@ Transform:
   - {fileID: 1859754575}
   - {fileID: 1143574228}
   - {fileID: 1674219605}
+  - {fileID: 1927286675}
+  - {fileID: 1185904369}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -781,10 +813,15 @@ MonoBehaviour:
   xMax: 20
   zMin: -35
   zMax: 35
-  shotDelay: 0.5
+  yellowShotDelay: 1
+  greenShotDelay: 0.5
   laserShotYellow: {fileID: 6884349827792209365, guid: 05f950ceb0cfd4e46921416ce42c36c1,
     type: 3}
   laserGunYellow: {fileID: 1674219604}
+  laserShotGreen: {fileID: 6245142932509626399, guid: a5e8dc99f6f2b8a4d9d3be9d699a8998,
+    type: 3}
+  laserGunGreenLeft: {fileID: 1927286674}
+  laserGunGreenRight: {fileID: 1185904368}
 --- !u!65 &1497244158
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -891,6 +928,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1859754574}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1927286674
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1927286675}
+  m_Layer: 0
+  m_Name: LazerGunGreenLeft
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1927286675
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1927286674}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.2, y: -0.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1497244155}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2104944693
 GameObject:
   m_ObjectHideFlags: 0
