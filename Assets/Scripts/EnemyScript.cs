@@ -62,7 +62,6 @@ public class EnemyScript : MonoBehaviour
                 break;
             case "Asteroid":
                 health -= asteroidPower;
-                Debug.Log("Сокрушительное столкновение с астероидом! Минус " + asteroidPower + " брони! Защита = " + health);
                 break;
             case "Enemy":
                 DestroySelf();

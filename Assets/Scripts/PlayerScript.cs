@@ -31,12 +31,14 @@ public class PlayerScript : MonoBehaviour
     float nextGreenShotTime;
     float leftGunAngle; //угол поворота левого бокового орудия
     float rightGunAngle; //угол поворота левого бокового орудия
+    float startTime; //сохраняет время запуска игры, чтобы посчитать длительность
     
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("Уровень брони = " + health);
         playerShip = GetComponent<Rigidbody>();
+        startTime = Time.time; //получаем время активации игры
         leftGunAngle = playerShip.transform.rotation.y - gunAngle; // Задаем угол установки боковых пушек при старте, что бы снизить нагрузку на Update()
         rightGunAngle = playerShip.transform.rotation.y + gunAngle; // Если бы наш Звездолет вращался вокруг оси Y и стрелял по сторонам, выставляли бы по факту из Update()
     }
@@ -90,8 +92,8 @@ public class PlayerScript : MonoBehaviour
                 Debug.Log("Сокрушительное столкновение с астероидом! Минус " + asteroidPower + " брони! Защита = " + health);
                 break;
             case "Enemy":
-                DestroySelf();
                 Debug.Log("Капитан Ками Казе сделал свое дело!!! Корабль уничтожен!");
+                DestroySelf();
                 break;
             case "Shield":
                 Destroy(other.gameObject); //заменить цветной щит на белый если он сработал
@@ -114,6 +116,8 @@ public class PlayerScript : MonoBehaviour
     {
         Destroy(gameObject);
         Instantiate(playerExplosion, transform.position, Quaternion.identity);
+        float finishTime = Time.time - startTime;
+        Debug.Log("GAME OVER!!! Ты продержался " + finishTime + " секунд.");
     }
 
 /*     private void DestroyEnemy(Collider other)

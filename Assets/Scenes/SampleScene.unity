@@ -1046,7 +1046,7 @@ MonoBehaviour:
   enemy2: {fileID: 6987756708060129515, guid: a3ec96af2f4e76941afe7b1b06ec0c5b, type: 3}
   enemy3: {fileID: 5200478410832928072, guid: 3f00b4c2837ab0945bfca3ff2d1bdc67, type: 3}
   shield: {fileID: 4494564301594119957, guid: 332670dfd547ac347932e2da5eb3aa18, type: 3}
-  minDelay: 0.8
+  minDelay: 0.6
   maxDelay: 1.4
 --- !u!23 &2104944695
 MeshRenderer:
