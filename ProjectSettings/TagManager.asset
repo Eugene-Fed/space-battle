@@ -11,6 +11,7 @@ TagManager:
   - YellowLaser
   - Enemy
   - RedEnemyLaser
+  - Shield
   layers:
   - Default
   - TransparentFX

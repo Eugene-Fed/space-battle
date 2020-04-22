@@ -38,8 +38,10 @@ public class AsteroidScript : MonoBehaviour
         //         break;
         //     case "GreenLaser":
         //         break;
+        //     case "GameBoundary":
+        //     case "Asteroid":
         //     default:
-        //         return;
+        //         return; //не делаем ничего. Астероиды проскальзывают сквозь друг друга, дабы не превратить игровое пространство в камнеломку
         //         break;
         // }
 
