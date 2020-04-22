@@ -21,8 +21,14 @@ public class EmitterScript : MonoBehaviour
 
     void Start()
     {
-        //Исходя из списка, на каждый большой астероид получаем 2 средних и 3 мелких
-        enemyList = new List<GameObject>(){asteroid1, asteroid1, asteroid1, asteroid2, asteroid2, asteroid3, enemy1, enemy2, enemy3};
+         
+        //Исходя из списка, имеем разную частоту появления разнотипных объектов
+        enemyList = new List<GameObject>(){asteroid1, asteroid1, asteroid1, asteroid1,
+                                            asteroid2, asteroid2, asteroid2,
+                                            asteroid3, asteroid3,
+                                            enemy1, enemy2, enemy3};
+ 
+        //enemyList = new List<GameObject>(){enemy1, enemy2, enemy3};
     }
 
     // Update is called once per frame

@@ -427,7 +427,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 11.945585, y: 1.4957151, z: 13.117715}
+  m_Size: {x: 11.945585, y: 5, z: 13.117715}
   m_Center: {x: 0, y: -0.000007659197, z: 0}
 --- !u!114 &5968270798931161577
 MonoBehaviour:
@@ -443,9 +443,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minSpeed: 15
   maxSpeed: 35
-  greenShotDelay: 1
+  greenShotDelay: 100
   health: 3
   laserShotRedEnemy: {fileID: 3197264417128449992, guid: fa52c580f781c8a44bb889a6646f1844,
     type: 3}
   laserGunRedLeft: {fileID: 644414379524200908}
   laserGunRedRight: {fileID: 5135638782894911273}
+  playerExplosion: {fileID: 1674766840723011950, guid: 86fa86d56f598534bb33dffab3097dae,
+    type: 3}
