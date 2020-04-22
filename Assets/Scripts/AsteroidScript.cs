@@ -23,12 +23,6 @@ public class AsteroidScript : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // Для того, чтобы поток астероидов был "плотнее" и они не уничтожали друг друга исключил их взаимоодействие между собой
-/*         
-        if (other.tag == "GameBoundary" || other.tag == "Asteroid")
-        {
-            return;
-        }
-         */
         switch (other.tag)
         {
             case "Player":
@@ -45,29 +39,19 @@ public class AsteroidScript : MonoBehaviour
                 break;
             case "GreenLaser":
                 DestroyAsteroid();
-                Destroy(other.gameObject); //лазер просто исчезает
+                Destroy(other.gameObject);
                 break;
             case "RedEnemyLaser": //разбивка на разные лазеры для дальнейшей реализации разного урона в зависимости от типа лазера
                 DestroyAsteroid();
-                Destroy(other.gameObject); //лазер просто исчезает
+                Destroy(other.gameObject);
                 break;
             case "GameBoundary":
             case "Asteroid":
             default:
-                return; //не делаем ничего. Астероиды проскальзывают сквозь друг друга, дабы не превратить игровое пространство в камнеломку
+                //return; //не делаем ничего. Астероиды проскальзывают сквозь друг друга, дабы не превратить игровое пространство в камнеломку
                 break;
         }
 
-        DestroyAsteroid();
-        //Destroy(gameObject);
-        Destroy(other.gameObject);
-
-        if (other.tag == "Player")
-        {
-            Instantiate(playerExplosion, other.transform.position, Quaternion.identity);
-        }
-
-        //Instantiate(asteroidExplosion, transform.position, Quaternion.identity);
     }
 
     private void DestroyAsteroid()

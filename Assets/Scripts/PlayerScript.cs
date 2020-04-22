@@ -90,8 +90,8 @@ public class PlayerScript : MonoBehaviour
                 break;
             case "Shield":
                 Destroy(other.gameObject); //заменить цветной щит на белый если он сработал
-                health += 2;
-                Debug.Log("Щит активирован. Плюс " shieldHelth + "к броне. Итого броня: " + health + "!");
+                health += shieldHelth;
+                Debug.Log("Щит активирован. Плюс " + shieldHelth + " к броне. Броня усилена до  " + health + " !!!");
                 //Instantiate(playerExplosion, other.transform.position, Quaternion.identity);
                 break;
             default:

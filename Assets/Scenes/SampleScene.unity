@@ -857,6 +857,7 @@ MonoBehaviour:
   greenShotDelay: 0.25
   gunAngle: 10
   health: 5
+  shieldHelth: 2
   laserShotYellow: {fileID: 6884349827792209365, guid: 05f950ceb0cfd4e46921416ce42c36c1,
     type: 3}
   laserGunYellow: {fileID: 1674219604}
