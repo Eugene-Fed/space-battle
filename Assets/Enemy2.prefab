@@ -280,7 +280,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minSpeed: 15
   maxSpeed: 35
-  greenShotDelay: 100
+  greenShotDelay: 1
   health: 2
   laserShotRedEnemy: {fileID: 3197264417128449992, guid: fa52c580f781c8a44bb889a6646f1844,
     type: 3}
