@@ -53,6 +53,12 @@ public class PlayerScript : MonoBehaviour
         {
             Instantiate(laserShotGreen, laserGunGreenLeft.transform.position, Quaternion.identity);
             Instantiate(laserShotGreen, laserGunGreenRight.transform.position, Quaternion.identity);
+
+            // Quaternion laserGunGreenLeftRotation = new Quaternion(laserGunGreenLeft.transform.rotation);
+            // Quaternion laserGunGreenRightRotation = new Quaternion(laserGunGreenRight.transform.rotation);
+            // Instantiate(laserShotGreen, laserGunGreenLeft.transform.position, laserGunGreenLeftRotation);
+            // Instantiate(laserShotGreen, laserGunGreenRight.transform.position, laserGunGreenRightRotation);
+
             nextGreenShotTime = Time.time + greenShotDelay;
         }
 

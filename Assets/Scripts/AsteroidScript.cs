@@ -6,6 +6,7 @@ public class AsteroidScript : MonoBehaviour
 {
     public float rotationSpeed;
     public float minSpeed, maxSpeed;
+    public int health; //дает астероиду единицы здоровья
     public GameObject asteroidExposion;
     public GameObject playerExplosion;
     
@@ -21,7 +22,8 @@ public class AsteroidScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "GameBoundary")
+        // Для того, чтобы поток астероидов был "плотнее" и они не уничтожали друг друга исключил их взаимоодействие между собой
+        if (other.tag == "GameBoundary" || other.tag == "Asteroid")
         {
             return;
         }
@@ -35,5 +37,10 @@ public class AsteroidScript : MonoBehaviour
         }
 
         Instantiate(asteroidExposion, transform.position, Quaternion.identity);
+    }
+
+    private void DestroyAsteroid()
+    {
+        //
     }
 }

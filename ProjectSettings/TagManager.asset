@@ -6,6 +6,9 @@ TagManager:
   tags:
   - FxTemporaire
   - GameBoundary
+  - Asteroid
+  - GreenLaser
+  - YellowLaser
   layers:
   - Default
   - TransparentFX
