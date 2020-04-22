@@ -11,7 +11,9 @@ public class PlayerScript : MonoBehaviour
     public float xMin, xMax, zMin, zMax;
     public float yellowShotDelay;
     public float greenShotDelay;
-    public float gunAngle; //угол поворота орудий, для установки из интерфейса
+    public float gunAngle; // угол поворота орудий, для установки из интерфейса
+    public int health; // количество урона, который может унести игрок на старте
+    public int shieldHelth; //количество брони от полученного щита
 
     public GameObject laserShotYellow;
     public GameObject laserGunYellow;
@@ -31,6 +33,7 @@ public class PlayerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("Уровень брони = " + health);
         playerShip = GetComponent<Rigidbody>();
         leftGunAngle = playerShip.transform.rotation.y - gunAngle; // Задаем угол установки боковых пушек при старте, что бы снизить нагрузку на Update()
         rightGunAngle = playerShip.transform.rotation.y + gunAngle; // Если бы наш Звездолет вращался вокруг оси Y и стрелял по сторонам, выставляли бы по факту из Update()
@@ -84,6 +87,12 @@ public class PlayerScript : MonoBehaviour
                 Instantiate(playerExplosion, transform.position, Quaternion.identity);
                 Destroy(other.gameObject);
                 Instantiate(playerExplosion, other.transform.position, Quaternion.identity);
+                break;
+            case "Shield":
+                Destroy(other.gameObject); //заменить цветной щит на белый если он сработал
+                health += 2;
+                Debug.Log("Щит активирован. Плюс " shieldHelth + "к броне. Итого броня: " + health + "!");
+                //Instantiate(playerExplosion, other.transform.position, Quaternion.identity);
                 break;
             default:
                 break;
