@@ -853,11 +853,13 @@ MonoBehaviour:
   xMax: 20
   zMin: -35
   zMax: 35
-  yellowShotDelay: 1
-  greenShotDelay: 0.25
+  yellowShotDelay: 1.2
+  greenShotDelay: 0.4
   gunAngle: 10
-  health: 5
-  shieldHelth: 2
+  health: 4
+  shieldHelth: 3
+  redEnemyLaserPower: 1
+  asteroidPower: 2
   laserShotYellow: {fileID: 6884349827792209365, guid: 05f950ceb0cfd4e46921416ce42c36c1,
     type: 3}
   laserGunYellow: {fileID: 1674219604}
@@ -1044,8 +1046,8 @@ MonoBehaviour:
   enemy2: {fileID: 6987756708060129515, guid: a3ec96af2f4e76941afe7b1b06ec0c5b, type: 3}
   enemy3: {fileID: 5200478410832928072, guid: 3f00b4c2837ab0945bfca3ff2d1bdc67, type: 3}
   shield: {fileID: 4494564301594119957, guid: 332670dfd547ac347932e2da5eb3aa18, type: 3}
-  minDelay: 0.3
-  maxDelay: 1.3
+  minDelay: 0.8
+  maxDelay: 1.4
 --- !u!23 &2104944695
 MeshRenderer:
   m_ObjectHideFlags: 0

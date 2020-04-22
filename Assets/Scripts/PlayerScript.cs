@@ -14,6 +14,8 @@ public class PlayerScript : MonoBehaviour
     public float gunAngle; // угол поворота орудий, для установки из интерфейса
     public int health; // количество урона, который может унести игрок на старте
     public int shieldHelth; //количество брони от полученного щита
+    public int redEnemyLaserPower; //мощность вражеского лазера
+    public int asteroidPower; //сила удара астероида
 
     public GameObject laserShotYellow;
     public GameObject laserGunYellow;
@@ -79,23 +81,45 @@ public class PlayerScript : MonoBehaviour
         {
             case "RedEnemyLaser": //разбито на разные версии Лазера на случай, если разные лазеры будут забирать разное количество HP, а не уничтожать сразу
                 Destroy(other.gameObject);
-                Destroy(gameObject);
-                Instantiate(playerExplosion, transform.position, Quaternion.identity);
+                health -= redEnemyLaserPower;
+                Debug.Log("Прямое попадание вражеского лазера! Минус " + redEnemyLaserPower + " единиц брони! Защита = " + health);
+                break;
+            case "Asteroid": //разбито на разные версии Лазера на случай, если разные лазеры будут забирать разное количество HP, а не уничтожать сразу
+                //Destroy(other.gameObject);
+                health -= asteroidPower;
+                Debug.Log("Сокрушительное столкновение с астероидом! Минус " + asteroidPower + " брони! Защита = " + health);
                 break;
             case "Enemy":
-                Destroy(gameObject);
-                Instantiate(playerExplosion, transform.position, Quaternion.identity);
-                Destroy(other.gameObject);
-                Instantiate(playerExplosion, other.transform.position, Quaternion.identity);
+                DestroySelf();
+                Debug.Log("Капитан Ками Казе сделал свое дело!!! Корабль уничтожен!");
                 break;
             case "Shield":
                 Destroy(other.gameObject); //заменить цветной щит на белый если он сработал
                 health += shieldHelth;
-                Debug.Log("Щит активирован. Плюс " + shieldHelth + " к броне. Броня усилена до  " + health + " !!!");
+                Debug.Log("Щит активирован. Плюс " + shieldHelth + " к броне. Броня усилена до  " + health + " единиц!!!");
                 //Instantiate(playerExplosion, other.transform.position, Quaternion.identity);
                 break;
             default:
                 break;
         }
+
+        if (health <= 0)
+        {
+            DestroySelf();
+        }
+
     }
+
+    private void DestroySelf()
+    {
+        Destroy(gameObject);
+        Instantiate(playerExplosion, transform.position, Quaternion.identity);
+    }
+
+/*     private void DestroyEnemy(Collider other)
+    {
+        Destroy(other.gameObject);
+        Instantiate(playerExplosion, other.transform.position, Quaternion.identity);
+    } */
+    
 }

@@ -65,7 +65,11 @@ MonoBehaviour:
   rotationSpeed: 10
   minSpeed: 15
   maxSpeed: 35
-  health: 1
+  health: 5
+  yellowLaserPower: 10
+  greenLaserPower: 2
+  redEnemyLaserPower: 1
+  shipPower: 5
   asteroidExplosion: {fileID: 1877129533885742955, guid: 30c245d58b1995544a44eb643e7ec4aa,
     type: 3}
   playerExplosion: {fileID: 1674766840723011950, guid: 86fa86d56f598534bb33dffab3097dae,

@@ -444,7 +444,11 @@ MonoBehaviour:
   minSpeed: 15
   maxSpeed: 35
   greenShotDelay: 1
-  health: 3
+  health: 10
+  shieldHelth: 1
+  yellowLaserPower: 5
+  greenLaserPower: 2
+  asteroidPower: 3
   laserShotRedEnemy: {fileID: 3197264417128449992, guid: fa52c580f781c8a44bb889a6646f1844,
     type: 3}
   laserGunRedLeft: {fileID: 644414379524200908}

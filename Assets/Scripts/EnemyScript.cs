@@ -8,6 +8,10 @@ public class EnemyScript : MonoBehaviour
     public float minSpeed, maxSpeed;
     public float greenShotDelay;
     public int health; //дает врагу единицы здоровья
+    public int shieldHelth; //количество брони от полученного щита
+    public int yellowLaserPower; //мощность вражеского лазера
+    public int greenLaserPower; //мощность вражеского лазера
+    public int asteroidPower; //сила удара астероида
 
     public GameObject laserShotRedEnemy;
     public GameObject laserGunRedLeft;
@@ -49,25 +53,42 @@ public class EnemyScript : MonoBehaviour
         switch (other.tag)
         {
             case "GreenLaser": //разбито на разные версии Лазера на случай, если разные лазеры будут забирать разное количество HP, а не уничтожать сразу
-                Destroy(other.gameObject);
-                Destroy(gameObject);
-                Instantiate(playerExplosion, transform.position, Quaternion.identity);
+                Destroy(other.gameObject); //убираем лазер
+                health -= greenLaserPower;
                 break;
             case "YellowLaser": //разбито на разные версии Лазера на случай, если разные лазеры будут забирать разное количество HP, а не уничтожать сразу
-                Destroy(other.gameObject);
-                Destroy(gameObject);
-                Instantiate(playerExplosion, transform.position, Quaternion.identity);
+                Destroy(other.gameObject); //убираем лазер
+                health -= yellowLaserPower;
+                break;
+            case "Asteroid":
+                health -= asteroidPower;
+                Debug.Log("Сокрушительное столкновение с астероидом! Минус " + asteroidPower + " брони! Защита = " + health);
                 break;
             case "Enemy":
-                Destroy(gameObject);
-                Instantiate(playerExplosion, transform.position, Quaternion.identity);
-                Destroy(other.gameObject);
-                Instantiate(playerExplosion, other.transform.position, Quaternion.identity);
+                DestroySelf();
+                break;
+            case "Player":
+                DestroySelf();
+                break;
+            case "Shield":
+                Destroy(other.gameObject); //заменить цветной щит на белый если он сработал
+                health += shieldHelth;
+                Debug.Log("УПС! Враг своровал броню! Плюс " + shieldHelth + " к его броне. Вражеская броня усилена до " + health + " единиц!!!");
+                //Instantiate(playerExplosion, other.transform.position, Quaternion.identity);
                 break;
             default:
                 break;
         }
-    }
 
+        if (health <= 0)
+        {
+            DestroySelf();
+        }
+    }
+    private void DestroySelf()
+    {
+        Destroy(gameObject);
+        Instantiate(playerExplosion, transform.position, Quaternion.identity);
+    }
     
 }

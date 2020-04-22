@@ -24,10 +24,10 @@ public class EmitterScript : MonoBehaviour
     {
          
         //Исходя из списка, имеем разную частоту появления разнотипных объектов
-        enemyList = new List<GameObject>(){asteroid1, asteroid1, asteroid1, asteroid1, asteroid1, asteroid1, 
-                                            asteroid2, asteroid2, asteroid2, asteroid2, asteroid2, 
-                                            asteroid3, asteroid3, asteroid3, 
-                                            enemy1, enemy2, enemy2, enemy3,
+        enemyList = new List<GameObject>(){asteroid1, asteroid1, asteroid1, asteroid1, asteroid1,  
+                                            asteroid2, asteroid2, asteroid2, asteroid2, 
+                                            asteroid3, asteroid3, 
+                                            enemy1, enemy1, enemy2, enemy2, enemy2, enemy3, 
                                             shield};
  
         //enemyList = new List<GameObject>(){enemy1, enemy2, enemy3};

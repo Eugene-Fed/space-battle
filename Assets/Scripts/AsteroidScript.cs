@@ -7,6 +7,10 @@ public class AsteroidScript : MonoBehaviour
     public float rotationSpeed;
     public float minSpeed, maxSpeed;
     public int health; //дает астероиду единицы здоровья
+    public int yellowLaserPower; //мощность вражеского лазера
+    public int greenLaserPower; //мощность вражеского лазера
+    public int redEnemyLaserPower; //мощность вражеского лазера
+    public int shipPower; //сила удара астероида
     public GameObject asteroidExplosion;
     public GameObject playerExplosion;
     
@@ -26,24 +30,22 @@ public class AsteroidScript : MonoBehaviour
         switch (other.tag)
         {
             case "Player":
-                DestroyAsteroid();
-                DestroyShip(other);
+                health -= shipPower;
                 break;
             case "Enemy":
-                DestroyAsteroid();
-                DestroyShip(other);
+                health -= shipPower;
                 break;
             case "YellowLaser":
-                DestroyAsteroid();
                 Destroy(other.gameObject); //лазер просто исчезает
+                health -= yellowLaserPower;
                 break;
             case "GreenLaser":
-                DestroyAsteroid();
-                Destroy(other.gameObject);
+                Destroy(other.gameObject); //лазер просто исчезает
+                health -= greenLaserPower;
                 break;
             case "RedEnemyLaser": //разбивка на разные лазеры для дальнейшей реализации разного урона в зависимости от типа лазера
-                DestroyAsteroid();
-                Destroy(other.gameObject);
+                Destroy(other.gameObject); //лазер просто исчезает
+                health -= redEnemyLaserPower;
                 break;
             case "GameBoundary":
             case "Asteroid":
@@ -52,18 +54,17 @@ public class AsteroidScript : MonoBehaviour
                 break;
         }
 
+        if (health <= 0)
+        {
+            DestroySelf();
+        }
+
     }
 
-    private void DestroyAsteroid()
+    private void DestroySelf()
     {
         Destroy(gameObject);
         Instantiate(asteroidExplosion, transform.position, Quaternion.identity);
-    }
-
-    private void DestroyShip(Collider other)
-    {
-        Destroy(other.gameObject);
-        Instantiate(playerExplosion, other.transform.position, Quaternion.identity);
     }
 
 }
