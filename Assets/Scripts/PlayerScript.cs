@@ -63,15 +63,8 @@ public class PlayerScript : MonoBehaviour
         }
         if (Time.time > nextGreenShotTime && Input.GetButton("Fire2"))
         {
-            //leftGunAngle += playerShip.transform.rotation.y;
-            
             Instantiate(laserShotGreen, laserGunGreenLeft.transform.position, Quaternion.Euler(0, leftGunAngle, 0));
             Instantiate(laserShotGreen, laserGunGreenRight.transform.position, Quaternion.Euler(0, rightGunAngle, 0));
-
-            // Quaternion laserGunGreenLeftRotation = new Quaternion(laserGunGreenLeft.transform.rotation);
-            // Quaternion laserGunGreenRightRotation = new Quaternion(laserGunGreenRight.transform.rotation);
-            // Instantiate(laserShotGreen, laserGunGreenLeft.transform.position, laserGunGreenLeftRotation);
-            // Instantiate(laserShotGreen, laserGunGreenRight.transform.position, laserGunGreenRightRotation);
 
             nextGreenShotTime = Time.time + greenShotDelay;
         }
@@ -87,7 +80,6 @@ public class PlayerScript : MonoBehaviour
                 Debug.Log("Прямое попадание вражеского лазера! Минус " + redEnemyLaserPower + " единиц брони! Защита = " + health);
                 break;
             case "Asteroid": //разбито на разные версии Лазера на случай, если разные лазеры будут забирать разное количество HP, а не уничтожать сразу
-                //Destroy(other.gameObject);
                 health -= asteroidPower;
                 Debug.Log("Сокрушительное столкновение с астероидом! Минус " + asteroidPower + " брони! Защита = " + health);
                 break;
@@ -99,7 +91,6 @@ public class PlayerScript : MonoBehaviour
                 Destroy(other.gameObject); //заменить цветной щит на белый если он сработал
                 health += shieldHelth;
                 Debug.Log("Щит активирован. Плюс " + shieldHelth + " к броне. Броня усилена до  " + health + " единиц!!!");
-                //Instantiate(playerExplosion, other.transform.position, Quaternion.identity);
                 break;
             default:
                 break;
@@ -109,7 +100,6 @@ public class PlayerScript : MonoBehaviour
         {
             DestroySelf();
         }
-
     }
 
     private void DestroySelf()
@@ -118,12 +108,5 @@ public class PlayerScript : MonoBehaviour
         Instantiate(playerExplosion, transform.position, Quaternion.identity);
         float finishTime = Time.time - startTime;
         Debug.Log("GAME OVER!!! Ты продержался " + finishTime + " секунд.");
-    }
-
-/*     private void DestroyEnemy(Collider other)
-    {
-        Destroy(other.gameObject);
-        Instantiate(playerExplosion, other.transform.position, Quaternion.identity);
-    } */
-    
+    }  
 }

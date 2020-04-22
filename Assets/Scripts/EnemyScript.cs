@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
 {
-    //public float rotationSpeed;
     public float minSpeed, maxSpeed;
     public float minSpeedX, maxSpeedX; // для задания боковой скорости врагов
     public float greenShotDelay;
@@ -29,9 +28,6 @@ public class EnemyScript : MonoBehaviour
     void Start()
     {
         enemyShip = GetComponent<Rigidbody>();
-        //asteroid.angularVelocity = Random.insideUnitSphere * rotationSpeed;
-        //target = playerShip.transform;
-
         float zSpeed = Random.Range(minSpeed, maxSpeed);
         float xSpeed = Random.Range(minSpeedX, maxSpeedX);
         enemyShip.velocity = new Vector3(xSpeed, 0, -zSpeed);
@@ -41,8 +37,6 @@ public class EnemyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //enemyShip.velocity = new Vector3(moveHorizontal, 0, moveVertical) * speed
-        //enemyShip.rotation = Quaternion.Euler(enemyShip.velocity.z * tiltPitch, 0, -enemyShip.velocity.x * tiltRoll);
         target = playerShip.transform;
         transform.LookAt(target);
 
@@ -81,10 +75,9 @@ public class EnemyScript : MonoBehaviour
                 DestroySelf();
                 break;
             case "Shield":
-                Destroy(other.gameObject); //заменить цветной щит на белый если он сработал
+                Destroy(other.gameObject);
                 health += shieldHelth;
                 Debug.Log("УПС! Враг своровал броню! Плюс " + shieldHelth + " к его броне. Вражеская броня усилена до " + health + " единиц!!!");
-                //Instantiate(playerExplosion, other.transform.position, Quaternion.identity);
                 break;
             default:
                 break;

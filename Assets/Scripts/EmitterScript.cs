@@ -27,13 +27,13 @@ public class EmitterScript : MonoBehaviour
         //По сути тут кустарным ручным путем настраиваем соотношение врагов и ништяков на карте
         //До тех пор, пока враги не поворачивались лицом к игроку, можно было больше их выпускать в игру. Но с учето стрельбы сбоку и сзади, приходится ограничивать
         //И защищать тылы дополнительными специально пропущенными мимо себя астероидами
-        enemyList = new List<GameObject>(){asteroid1, asteroid1, asteroid1, asteroid1, asteroid1, asteroid1, 
-                                            asteroid2, asteroid2, asteroid2, asteroid2, 
+        enemyList = new List<GameObject>(){asteroid1, asteroid1, asteroid1, asteroid1, asteroid1, asteroid1, asteroid1, 
+                                            asteroid2, asteroid2, asteroid2, asteroid2, asteroid2,
                                             asteroid3, asteroid3, 
-                                            enemy1, enemy1, enemy2, enemy2, enemy3, 
+                                            enemy1, enemy1, enemy1, enemy2, enemy2, enemy3, 
                                             shield};
  
-        //enemyList = new List<GameObject>(){enemy1, enemy2, enemy3};
+        //enemyList = new List<GameObject>(){enemy1, enemy2, enemy3}; // просто временно убрать астероиды и оставить только врагов
     }
 
     // Update is called once per frame
