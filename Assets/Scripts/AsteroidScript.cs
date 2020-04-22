@@ -23,27 +23,40 @@ public class AsteroidScript : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // Для того, чтобы поток астероидов был "плотнее" и они не уничтожали друг друга исключил их взаимоодействие между собой
+/*         
         if (other.tag == "GameBoundary" || other.tag == "Asteroid")
         {
             return;
         }
-        
-        // switch (other.tag)
-        // {
-        //     case "Player":
-        //         break;
-        //     case "Enemy":
-        //         break;
-        //     case "YellowLaser":
-        //         break;
-        //     case "GreenLaser":
-        //         break;
-        //     case "GameBoundary":
-        //     case "Asteroid":
-        //     default:
-        //         return; //не делаем ничего. Астероиды проскальзывают сквозь друг друга, дабы не превратить игровое пространство в камнеломку
-        //         break;
-        // }
+         */
+        switch (other.tag)
+        {
+            case "Player":
+                DestroyAsteroid();
+                DestroyShip(other);
+                break;
+            case "Enemy":
+                DestroyAsteroid();
+                DestroyShip(other);
+                break;
+            case "YellowLaser":
+                DestroyAsteroid();
+                Destroy(other.gameObject); //лазер просто исчезает
+                break;
+            case "GreenLaser":
+                DestroyAsteroid();
+                Destroy(other.gameObject); //лазер просто исчезает
+                break;
+            case "RedEnemyLaser": //разбивка на разные лазеры для дальнейшей реализации разного урона в зависимости от типа лазера
+                DestroyAsteroid();
+                Destroy(other.gameObject); //лазер просто исчезает
+                break;
+            case "GameBoundary":
+            case "Asteroid":
+            default:
+                return; //не делаем ничего. Астероиды проскальзывают сквозь друг друга, дабы не превратить игровое пространство в камнеломку
+                break;
+        }
 
         DestroyAsteroid();
         //Destroy(gameObject);
@@ -62,4 +75,11 @@ public class AsteroidScript : MonoBehaviour
         Destroy(gameObject);
         Instantiate(asteroidExplosion, transform.position, Quaternion.identity);
     }
+
+    private void DestroyShip(Collider other)
+    {
+        Destroy(other.gameObject);
+        Instantiate(playerExplosion, other.transform.position, Quaternion.identity);
+    }
+
 }
