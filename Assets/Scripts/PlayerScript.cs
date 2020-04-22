@@ -11,6 +11,7 @@ public class PlayerScript : MonoBehaviour
     public float xMin, xMax, zMin, zMax;
     public float yellowShotDelay;
     public float greenShotDelay;
+    public float gunAngle; //угол поворота орудий, для установки из интерфейса
 
     public GameObject laserShotYellow;
     public GameObject laserGunYellow;
@@ -24,12 +25,15 @@ public class PlayerScript : MonoBehaviour
 
     float nextYellowShotTime;
     float nextGreenShotTime;
+    float leftGunAngle; //угол поворота левого бокового орудия
+    float rightGunAngle; //угол поворота левого бокового орудия
     
     // Start is called before the first frame update
     void Start()
     {
         playerShip = GetComponent<Rigidbody>();
-                
+        leftGunAngle = playerShip.transform.rotation.y - gunAngle; // Задаем угол установки боковых пушек при старте, что бы снизить нагрузку на Update()
+        rightGunAngle = playerShip.transform.rotation.y + gunAngle; // Если бы наш Звездолет вращался вокруг оси Y и стрелял по сторонам, выставляли бы по факту из Update()
     }
 
     // Update is called once per frame
@@ -52,8 +56,10 @@ public class PlayerScript : MonoBehaviour
         }
         if (Time.time > nextGreenShotTime && Input.GetButton("Fire2"))
         {
-            Instantiate(laserShotGreen, laserGunGreenLeft.transform.position, Quaternion.identity);
-            Instantiate(laserShotGreen, laserGunGreenRight.transform.position, Quaternion.identity);
+            //leftGunAngle += playerShip.transform.rotation.y;
+            
+            Instantiate(laserShotGreen, laserGunGreenLeft.transform.position, Quaternion.Euler(0, leftGunAngle, 0));
+            Instantiate(laserShotGreen, laserGunGreenRight.transform.position, Quaternion.Euler(0, rightGunAngle, 0));
 
             // Quaternion laserGunGreenLeftRotation = new Quaternion(laserGunGreenLeft.transform.rotation);
             // Quaternion laserGunGreenRightRotation = new Quaternion(laserGunGreenRight.transform.rotation);
