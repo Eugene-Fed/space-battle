@@ -66,7 +66,7 @@ MonoBehaviour:
   minSpeed: 20
   maxSpeed: 35
   health: 3
-  asteroidExposion: {fileID: 1877129533885742955, guid: 30c245d58b1995544a44eb643e7ec4aa,
+  asteroidExplosion: {fileID: 1877129533885742955, guid: 30c245d58b1995544a44eb643e7ec4aa,
     type: 3}
   playerExplosion: {fileID: 1674766840723011950, guid: 86fa86d56f598534bb33dffab3097dae,
     type: 3}

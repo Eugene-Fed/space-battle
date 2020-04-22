@@ -30,11 +30,16 @@ public class AsteroidScript : MonoBehaviour
         
         // switch other.tag
         // {
-        //     case 1:
+        //     case "Player":
         //         break;
-        //     case 2:
+        //     case "Enemy":
+        //         break;
+        //     case "YellowLaser":
+        //         break;
+        //     case "GreenLaser":
         //         break;
         //     default:
+        //         return;
         //         break;
         // }
 
