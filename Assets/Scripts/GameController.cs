@@ -8,10 +8,11 @@ public class GameController : MonoBehaviour
     public UnityEngine.UI.Text healthLable;
     public UnityEngine.UI.Image menu;
     public UnityEngine.UI.Button startButton;
-    public UnityEngine.UI.Button menuButton;
+    public UnityEngine.UI.Button exitGameButton;
     public UnityEngine.UI.Button restartButton;
 
     public GameObject player;
+    public GameObject gameMenu;
 
     public bool isStarted = false;
     
@@ -35,7 +36,7 @@ public class GameController : MonoBehaviour
 
     public void ActiveMenuButton()
     {
-        menuButton.gameObject.SetActive(true);
+        gameMenu.gameObject.SetActive(true);
     }
 
     void RestartGame() //очищает сцену перед запуском новой игры
@@ -55,8 +56,12 @@ public class GameController : MonoBehaviour
         {
             Destroy(item);
         }
+        GameObject[] shields = GameObject.FindGameObjectsWithTag("Shield"); // поиск массива объектов
+        foreach (GameObject item in shields)
+        {
+            Destroy(item);
+        }
 
-        
         Instantiate(player, player.transform.position, Quaternion.identity); //добавляем игрока только по нажатию на кнопку Start
         IncrementScore(-score);
     }
@@ -70,20 +75,22 @@ public class GameController : MonoBehaviour
         startButton.onClick.AddListener(delegate {
             menu.gameObject.SetActive(false);
             isStarted = true;
-            menuButton.gameObject.SetActive(false);
+            gameMenu.gameObject.SetActive(false);
             RestartGame();
         });
 
-        menuButton.onClick.AddListener(delegate {
+        exitGameButton.onClick.AddListener(delegate {
             menu.gameObject.SetActive(true);
             isStarted = false;
-            menuButton.gameObject.SetActive(false);
+            gameMenu.gameObject.SetActive(false);
+            RestartGame(); // делаем рестарт, чтобы уничтожить всех оставшихся врагов и астероидов
+            Destroy(player); // после чего удаляем игрока, т.к. он создается в методе RestartGame()
         });
 
         restartButton.onClick.AddListener(delegate {
             menu.gameObject.SetActive(false);
             isStarted = true;
-            menuButton.gameObject.SetActive(false);
+            gameMenu.gameObject.SetActive(false);
             RestartGame();
         });
     }
