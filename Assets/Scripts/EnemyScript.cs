@@ -12,6 +12,7 @@ public class EnemyScript : MonoBehaviour
     public int yellowLaserPower; //мощность вражеского лазера
     public int greenLaserPower; //мощность вражеского лазера
     public int asteroidPower; //сила удара астероида
+    public int scoreValue; //количество очков за уничтожение противника
 
     public GameObject laserShotRedEnemy;
     public GameObject laserGunRedLeft;
@@ -63,10 +64,18 @@ public class EnemyScript : MonoBehaviour
             case "GreenLaser": //разбито на разные версии Лазера на случай, если разные лазеры будут забирать разное количество HP, а не уничтожать сразу
                 Destroy(other.gameObject); //убираем лазер
                 health -= greenLaserPower;
+                if (health <= 0)
+                {
+                    GameController.instance.IncrementScore(scoreValue);
+                }
                 break;
             case "YellowLaser": //разбито на разные версии Лазера на случай, если разные лазеры будут забирать разное количество HP, а не уничтожать сразу
                 Destroy(other.gameObject); //убираем лазер
                 health -= yellowLaserPower;
+                if (health <= 0)
+                {
+                    GameController.instance.IncrementScore(scoreValue);
+                }
                 break;
             case "Asteroid":
                 health -= asteroidPower;

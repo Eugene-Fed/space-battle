@@ -288,6 +288,7 @@ MonoBehaviour:
   yellowLaserPower: 4
   greenLaserPower: 2
   asteroidPower: 3
+  scoreValue: 5
   laserShotRedEnemy: {fileID: 3197264417128449992, guid: fa52c580f781c8a44bb889a6646f1844,
     type: 3}
   laserGunRedLeft: {fileID: 6305572256285570762}

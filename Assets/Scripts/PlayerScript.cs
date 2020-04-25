@@ -41,6 +41,7 @@ public class PlayerScript : MonoBehaviour
         startTime = Time.time; //получаем время активации игры
         leftGunAngle = playerShip.transform.rotation.y - gunAngle; // Задаем угол установки боковых пушек при старте, что бы снизить нагрузку на Update()
         rightGunAngle = playerShip.transform.rotation.y + gunAngle; // Если бы наш Звездолет вращался вокруг оси Y и стрелял по сторонам, выставляли бы по факту из Update()
+        GameController.instance.ChangeHealth(health);
     }
 
     // Update is called once per frame
@@ -86,7 +87,8 @@ public class PlayerScript : MonoBehaviour
                 break;
             case "Enemy":
                 Debug.Log("Капитан Ками Казе сделал свое дело!!! Корабль уничтожен!");
-                DestroySelf();
+                //DestroySelf();
+                health = 0;
                 break;
             case "Shield":
                 Destroy(other.gameObject); //заменить цветной щит на белый если он сработал
@@ -96,7 +98,8 @@ public class PlayerScript : MonoBehaviour
             default:
                 break;
         }
-
+        
+        GameController.instance.ChangeHealth(health); //после каждой коллизии обновлять счетчик здоровья
         if (health <= 0)
         {
             DestroySelf();
