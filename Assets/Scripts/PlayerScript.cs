@@ -17,6 +17,8 @@ public class PlayerScript : MonoBehaviour
     public int redEnemyLaserPower; //мощность вражеского лазера
     public int asteroidPower; //сила удара астероида
 
+    //GameObject menuButton; //кнопка, которая появляется после смерти для выхода в главное меню.
+
     public GameObject laserShotYellow;
     public GameObject laserGunYellow;
     // объекты для боковых пушек
@@ -42,11 +44,18 @@ public class PlayerScript : MonoBehaviour
         leftGunAngle = playerShip.transform.rotation.y - gunAngle; // Задаем угол установки боковых пушек при старте, что бы снизить нагрузку на Update()
         rightGunAngle = playerShip.transform.rotation.y + gunAngle; // Если бы наш Звездолет вращался вокруг оси Y и стрелял по сторонам, выставляли бы по факту из Update()
         GameController.instance.ChangeHealth(health);
+        //menuButton = GameObject.FindWithTag("OpenMenuButton");
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (GameController.instance.isStarted == false)
+        {
+            return;
+        }
+        
+        
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
         playerShip.velocity = new Vector3(moveHorizontal, 0, moveVertical) * speed;
@@ -69,6 +78,14 @@ public class PlayerScript : MonoBehaviour
         {
             Instantiate(laserShotYellow, laserGunYellow.transform.position, Quaternion.identity);
             nextYellowShotTime = Time.time + yellowShotDelay;
+            /* // пример получения списка объектов по тегу
+            GameObject[] asteroids = GameObject.FindGameObjectsWithTag("Asteroid"); // поиск массива объектов
+            GameObject asteroid = GameObject.FindWithTag("Asteroid"); // поиск одного объекта
+            foreach (GameObject item in asteroids)
+            {
+                Destroy(item);
+            }
+            */
         }
     }
 
@@ -99,11 +116,11 @@ public class PlayerScript : MonoBehaviour
                 break;
         }
         
-        GameController.instance.ChangeHealth(health); //после каждой коллизии обновлять счетчик здоровья
         if (health <= 0)
         {
             DestroySelf();
         }
+        GameController.instance.ChangeHealth(health); //после каждой коллизии обновлять счетчик здоровья
     }
 
     private void DestroySelf()
@@ -112,5 +129,9 @@ public class PlayerScript : MonoBehaviour
         Instantiate(playerExplosion, transform.position, Quaternion.identity);
         float finishTime = Time.time - startTime;
         Debug.Log("GAME OVER!!! Ты продержался " + finishTime + " секунд.");
+        health = 0;
+        GameController.instance.ActiveMenuButton(); //Активируем кнопку выхода в Меню
+        //menuButton.gameObject.SetActive(true);
+        //menuButton.SetActive(true);
     }  
 }

@@ -39,6 +39,11 @@ public class EmitterScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameController.instance.isStarted == false)
+        {
+            return;
+        }
+        
         if (Time.time > nextLaunchTime)
         {
             int asteroidIndex = Random.Range(0, enemyList.Count); // получаем рандомный индекс астероида
