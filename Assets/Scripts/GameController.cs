@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
     public UnityEngine.UI.Image menu;
     public UnityEngine.UI.Button startButton;
     public UnityEngine.UI.Button menuButton;
+    public UnityEngine.UI.Button restartButton;
 
     public GameObject player;
 
@@ -37,7 +38,7 @@ public class GameController : MonoBehaviour
         menuButton.gameObject.SetActive(true);
     }
 
-    void ClearGame() //очищает сцену перед запуском новой игры
+    void RestartGame() //очищает сцену перед запуском новой игры
     {
         GameObject[] asteroids = GameObject.FindGameObjectsWithTag("Asteroid"); // поиск массива объектов
         foreach (GameObject item in asteroids)
@@ -49,23 +50,41 @@ public class GameController : MonoBehaviour
         {
             Destroy(item);
         }
+        GameObject[] lasers = GameObject.FindGameObjectsWithTag("RedEnemyLaser"); // поиск массива объектов
+        foreach (GameObject item in lasers)
+        {
+            Destroy(item);
+        }
+
+        
+        Instantiate(player, player.transform.position, Quaternion.identity); //добавляем игрока только по нажатию на кнопку Start
+        IncrementScore(-score);
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        menu.gameObject.SetActive(true);
         instance = this;
+
         startButton.onClick.AddListener(delegate {
             menu.gameObject.SetActive(false);
             isStarted = true;
             menuButton.gameObject.SetActive(false);
-            ClearGame();
-            Instantiate(player, player.transform.position, Quaternion.identity); //добавляем игрока только по нажатию на кнопку Start
+            RestartGame();
         });
+
         menuButton.onClick.AddListener(delegate {
             menu.gameObject.SetActive(true);
             isStarted = false;
             menuButton.gameObject.SetActive(false);
+        });
+
+        restartButton.onClick.AddListener(delegate {
+            menu.gameObject.SetActive(false);
+            isStarted = true;
+            menuButton.gameObject.SetActive(false);
+            RestartGame();
         });
     }
 
