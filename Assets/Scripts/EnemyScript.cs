@@ -29,23 +29,26 @@ public class EnemyScript : MonoBehaviour
     {
         enemyShip = GetComponent<Rigidbody>();
         float zSpeed = Random.Range(minSpeed, maxSpeed);
-        float xSpeed = Random.Range(minSpeedX, maxSpeedX);
-        enemyShip.velocity = new Vector3(xSpeed, 0, -zSpeed);
+        //float xSpeed = Random.Range(minSpeedX, maxSpeedX);
+        //enemyShip.velocity = new Vector3(xSpeed, 0, -zSpeed);
+        enemyShip.velocity = new Vector3(0, 0, -zSpeed);
         enemyShip.transform.rotation = Quaternion.Euler(0, 180, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        target = playerShip.transform;
-        transform.LookAt(target);
+        //target = playerShip.transform;
+        //transform.LookAt(target);
 
         laserShotRedEnemy.transform.rotation = transform.rotation;
 
         if (Time.time > nextGreenShotTime)
         {
             // Так и не понял как направить на активные координаты игрока. Получилось только на стартовые :С
-            
+            //Instantiate(laserShotRedEnemy, laserGunRedLeft.transform.position, laserShotRedEnemy.transform.rotation);
+            //Instantiate(laserShotRedEnemy, laserGunRedRight.transform.position, laserShotRedEnemy.transform.rotation);
+
             Instantiate(laserShotRedEnemy, laserGunRedLeft.transform.position, laserShotRedEnemy.transform.rotation);
             Instantiate(laserShotRedEnemy, laserGunRedRight.transform.position, laserShotRedEnemy.transform.rotation);
 
