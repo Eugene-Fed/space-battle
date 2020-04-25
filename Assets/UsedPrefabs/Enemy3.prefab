@@ -442,13 +442,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minSpeed: 15
-  maxSpeed: 35
+  maxSpeed: 30
   minSpeedX: -10
   maxSpeedX: 10
-  greenShotDelay: 1
+  greenShotDelay: 1.2
   health: 10
   shieldHelth: 1
-  yellowLaserPower: 5
+  yellowLaserPower: 4
   greenLaserPower: 2
   asteroidPower: 3
   laserShotRedEnemy: {fileID: 3197264417128449992, guid: fa52c580f781c8a44bb889a6646f1844,

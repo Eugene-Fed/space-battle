@@ -278,12 +278,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f17628e657edfe8489edbeaae7aa6e9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSpeed: 15
+  minSpeed: 20
   maxSpeed: 35
   minSpeedX: -10
   maxSpeedX: 10
-  greenShotDelay: 1
-  health: 3
+  greenShotDelay: 0.4
+  health: 5
   shieldHelth: 2
   yellowLaserPower: 4
   greenLaserPower: 2

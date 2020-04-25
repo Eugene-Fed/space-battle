@@ -56,17 +56,18 @@ public class PlayerScript : MonoBehaviour
 
         playerShip.rotation = Quaternion.Euler(playerShip.velocity.z * tiltPitch, 0, -playerShip.velocity.x * tiltRoll);
 
-        if (Time.time > nextYellowShotTime && Input.GetButton("Fire1"))
-        {
-            Instantiate(laserShotYellow, laserGunYellow.transform.position, Quaternion.identity);
-            nextYellowShotTime = Time.time + yellowShotDelay;
-        }
-        if (Time.time > nextGreenShotTime && Input.GetButton("Fire2"))
+        if (Time.time > nextGreenShotTime && Input.GetButton("Fire1"))
         {
             Instantiate(laserShotGreen, laserGunGreenLeft.transform.position, Quaternion.Euler(0, leftGunAngle, 0));
             Instantiate(laserShotGreen, laserGunGreenRight.transform.position, Quaternion.Euler(0, rightGunAngle, 0));
 
             nextGreenShotTime = Time.time + greenShotDelay;
+        }
+
+        if (Time.time > nextYellowShotTime && Input.GetButton("Fire2"))
+        {
+            Instantiate(laserShotYellow, laserGunYellow.transform.position, Quaternion.identity);
+            nextYellowShotTime = Time.time + yellowShotDelay;
         }
     }
 
