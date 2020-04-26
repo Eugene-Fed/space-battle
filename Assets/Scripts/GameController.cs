@@ -6,6 +6,7 @@ public class GameController : MonoBehaviour
 {
     public UnityEngine.UI.Text scoreLable;
     public UnityEngine.UI.Text healthLable;
+    public UnityEngine.UI.Text scoreRecordLable;
     public UnityEngine.UI.Image menu;
     public UnityEngine.UI.Button startButton;
     public UnityEngine.UI.Button exitGameButton;
@@ -22,6 +23,7 @@ public class GameController : MonoBehaviour
     
     
     int score = 0;
+    int scoreRecord = 0; //записывается последний лучший результат
     //int health = 0;
 
     public static GameController instance;
@@ -29,7 +31,12 @@ public class GameController : MonoBehaviour
     public void IncrementScore(int increment)
     {
         score += increment;
-        scoreLable.text = "Score: " + score; 
+        scoreLable.text = "Score: " + score;
+        if (score > scoreRecord)
+        {
+            scoreRecord = score;
+            scoreRecordLable.text = "Best Score: " + scoreRecord;
+        } 
     }
 
     public void ChangeHealth(int health) //этот метод лишь отображает здоровье. подсчет идет непосредственно в объекте игрока
