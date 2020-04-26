@@ -10,9 +10,13 @@ public class GameController : MonoBehaviour
     public UnityEngine.UI.Button startButton;
     public UnityEngine.UI.Button exitGameButton;
     public UnityEngine.UI.Button restartButton;
+    public UnityEngine.UI.Button closeCredits;
+    public UnityEngine.UI.Button openCredits;
 
     public GameObject player;
     public GameObject gameMenu;
+    public GameObject creditsGrid;
+
 
     public bool isStarted = false;
     
@@ -70,16 +74,25 @@ public class GameController : MonoBehaviour
     void Start()
     {
         menu.gameObject.SetActive(true);
+        creditsGrid.gameObject.SetActive(false);
         instance = this;
 
-        startButton.onClick.AddListener(delegate {
+        startButton.onClick.AddListener(delegate { //запуск игры из главного меню
             menu.gameObject.SetActive(false);
             isStarted = true;
             gameMenu.gameObject.SetActive(false);
             RestartGame();
         });
 
-        exitGameButton.onClick.AddListener(delegate {
+        openCredits.onClick.AddListener(delegate { //открыть Кредитс
+            creditsGrid.gameObject.SetActive(true);
+        });
+
+        closeCredits.onClick.AddListener(delegate { //закрыть Кредитс
+            creditsGrid.gameObject.SetActive(false);
+        });
+
+        exitGameButton.onClick.AddListener(delegate { //выход в главное меню
             menu.gameObject.SetActive(true);
             isStarted = false;
             gameMenu.gameObject.SetActive(false);
@@ -87,7 +100,7 @@ public class GameController : MonoBehaviour
             Destroy(player); // после чего удаляем игрока, т.к. он создается в методе RestartGame()
         });
 
-        restartButton.onClick.AddListener(delegate {
+        restartButton.onClick.AddListener(delegate { //перезапуск игры
             menu.gameObject.SetActive(false);
             isStarted = true;
             gameMenu.gameObject.SetActive(false);
