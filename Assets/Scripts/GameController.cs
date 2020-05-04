@@ -17,6 +17,8 @@ public class GameController : MonoBehaviour
     public GameObject player;
     public GameObject gameMenu;
     public GameObject creditsGrid;
+    public GameObject handlers; //папка элементов управления персонажем
+    public GameObject leftJoystick; //левый джойстик для перемещений
 
 
     public bool isStarted = false;
@@ -48,6 +50,7 @@ public class GameController : MonoBehaviour
     public void ActiveMenuButton()
     {
         gameMenu.gameObject.SetActive(true);
+        handlers.gameObject.SetActive(false);
     }
 
     void RestartGame() //очищает сцену перед запуском новой игры
@@ -82,12 +85,14 @@ public class GameController : MonoBehaviour
     {
         menu.gameObject.SetActive(true);
         creditsGrid.gameObject.SetActive(false);
+        handlers.gameObject.SetActive(false);
         instance = this;
 
         startButton.onClick.AddListener(delegate { //запуск игры из главного меню
             menu.gameObject.SetActive(false);
             isStarted = true;
             gameMenu.gameObject.SetActive(false);
+            handlers.gameObject.SetActive(true);
             RestartGame();
         });
 
@@ -103,6 +108,7 @@ public class GameController : MonoBehaviour
             menu.gameObject.SetActive(true);
             isStarted = false;
             gameMenu.gameObject.SetActive(false);
+            handlers.gameObject.SetActive(false);
             RestartGame(); // делаем рестарт, чтобы уничтожить всех оставшихся врагов и астероидов
             Destroy(player); // после чего удаляем игрока, т.к. он создается в методе RestartGame()
         });
@@ -111,6 +117,7 @@ public class GameController : MonoBehaviour
             menu.gameObject.SetActive(false);
             isStarted = true;
             gameMenu.gameObject.SetActive(false);
+            handlers.gameObject.SetActive(true);
             RestartGame();
         });
     }
