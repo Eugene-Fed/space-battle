@@ -14677,7 +14677,12 @@ MonoBehaviour:
   shieldHelth: 3
   redEnemyLaserPower: 2
   asteroidPower: 2
-  menuButton: {fileID: 0}
+  moveHorizontal: 0
+  moveVertical: 0
+  lableVertical: {fileID: 5658565718990584747, guid: 6bbd26c3283e1954688f49b413646258,
+    type: 3}
+  lableHorizontal: {fileID: 8202115999540302037, guid: 4ef6ffcdca5549c4f9195da62fb4ad24,
+    type: 3}
   laserShotYellow: {fileID: 6884349827792209365, guid: 05f950ceb0cfd4e46921416ce42c36c1,
     type: 3}
   laserGunYellow: {fileID: 5475715354473051108}
@@ -14686,6 +14691,8 @@ MonoBehaviour:
   laserGunGreenLeft: {fileID: 5475715353120303455}
   laserGunGreenRight: {fileID: 5475715353654572151}
   playerExplosion: {fileID: 1674766840723011950, guid: 86fa86d56f598534bb33dffab3097dae,
+    type: 3}
+  leftJoystick: {fileID: 3238315300937400048, guid: dd1db43a2a0df234b829c552fb93e125,
     type: 3}
 --- !u!65 &5475715354007241068
 BoxCollider:

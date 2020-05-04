@@ -16,6 +16,12 @@ public class PlayerScript : MonoBehaviour
     public int shieldHelth; //количество брони от полученного щита
     public int redEnemyLaserPower; //мощность вражеского лазера
     public int asteroidPower; //сила удара астероида
+    //времянка
+    //public float moveHorizontal;
+    //public float moveVertical;
+    public UnityEngine.UI.Text lableVertical;
+    public UnityEngine.UI.Text lableHorizontal;
+    //удалить
 
     //GameObject menuButton; //кнопка, которая появляется после смерти для выхода в главное меню.
 
@@ -26,6 +32,7 @@ public class PlayerScript : MonoBehaviour
     public GameObject laserGunGreenLeft;
     public GameObject laserGunGreenRight;
     public GameObject playerExplosion;
+    public GameObject leftJoystick; //левый джойстик для перемещений
 
     Rigidbody playerShip;
 
@@ -55,9 +62,21 @@ public class PlayerScript : MonoBehaviour
             return;
         }
         
-        
+        //Управление кораблем от стандартных физических клавиш
+        //float moveHorizontal = Input.GetAxis("Horizontal");
+        //float moveVertical = Input.GetAxis("Vertical");
+
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
+        //lableHorizontal.text = "Horizontal: " + moveHorizontal * speed;
+        //lableVertical.text = "Vertical: " + moveVertical * speed;
+
+        //Управление кораблем от графического джойстика
+        moveHorizontal = leftJoystick.GetComponent<JoystickMovement>().HorizontalInput();
+        //moveHorizontal = leftJoystick.GetComponent<JoystickMovement>().joystickInputX;
+        //float moveVertical = leftJoystick.VerticalInput();
+        //Debug.Log("Movement = X: " + moveHorizontal + ", Y: " + moveVertical);
+
         playerShip.velocity = new Vector3(moveHorizontal, 0, moveVertical) * speed;
 
         float xPosition = Mathf.Clamp(playerShip.position.x, xMin, xMax);

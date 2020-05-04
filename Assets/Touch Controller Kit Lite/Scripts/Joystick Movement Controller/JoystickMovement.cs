@@ -13,6 +13,10 @@ public class JoystickMovement : MonoBehaviour, IPointerDownHandler, IDragHandler
     private Vector2 joystickHandleImgInitialPosition;
     private Vector2 joystickInput;
 
+    //temp
+    public float joystickInputX;
+    public float joystickInputY;
+
     [Tooltip("The area upto which joystick handle can be dragged. The lesser value means larger area.")]
     [SerializeField] [Range(0.1f, 2f)] private float handleArea = 0.6f; //Area upto which joystick handle can be dragged
 
@@ -45,6 +49,7 @@ public class JoystickMovement : MonoBehaviour, IPointerDownHandler, IDragHandler
     {
         //Reference ondrag to handle the event
         OnDrag(eventData);
+        Debug.Log("Movement X: " + joystickInput.x);
     }
 
     //when pointer is being dragged after being clicked
@@ -92,12 +97,15 @@ public class JoystickMovement : MonoBehaviour, IPointerDownHandler, IDragHandler
     //Returns horizontal (x-axis) input
     public float HorizontalInput()
     {
+        joystickInputX = joystickInput.x; //temp
+        //Debug.Log("Movement X: " + joystickInput.x);
         return joystickInput.x;
     }
 
     //Returns Vertical (y-axis) input
     public float VerticalInput()
     {
+        joystickInputY = joystickInput.y; //temp
         return joystickInput.y;
     }
 
