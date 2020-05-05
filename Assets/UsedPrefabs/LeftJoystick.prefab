@@ -52,7 +52,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb9f0cc3dd4ffa447a7d06d65a888ee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handleArea: 0.9
+  joystickInputX: 0
+  joystickInputY: 0
+  handleArea: 1
 --- !u!223 &3454102590090408946
 Canvas:
   m_ObjectHideFlags: 0
