@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -19,12 +20,14 @@ public class PlayerScript : MonoBehaviour
 
     float moveHorizontal; //переменные для контроля перемещения игрока
     float moveVertical; //переменные для контроля перемещения игрока
-    //времянка
-    //public float moveHorizontal;
-    //public float moveVertical;
-    UnityEngine.UI.Text lableVertical;
-    UnityEngine.UI.Text lableHorizontal;
-    //удалить
+    
+    //UnityEngine.UI.Button greenButton;
+    //UnityEngine.UI.Button yellowButton;
+
+    GameObject greenButton;
+    GameObject yellowButton;
+    //bool greenButtonPressed = false;
+    //bool yellowButtonPressed = false;
 
     //GameObject menuButton; //кнопка, которая появляется после смерти для выхода в главное меню.
 
@@ -54,13 +57,17 @@ public class PlayerScript : MonoBehaviour
         leftGunAngle = playerShip.transform.rotation.y - gunAngle; // Задаем угол установки боковых пушек при старте, что бы снизить нагрузку на Update()
         rightGunAngle = playerShip.transform.rotation.y + gunAngle; // Если бы наш Звездолет вращался вокруг оси Y и стрелял по сторонам, выставляли бы по факту из Update()
         GameController.instance.ChangeHealth(health);
-        leftJoystick =  GameObject.Find("LeftJoystick"); //обязательно жуно убедиться, что джойстик активируется ДО модели игрока, иначе по имени найден не будет
-        //temt start
-        //lableHorizontal = UnityEngine.UI.Text.Find("HorizontalLable");
-        //lableVertical = UnityEngine.UI.Text.Find("VerticalLable");
-        //temp end
+        leftJoystick = GameObject.Find("LeftJoystick"); //обязательно жуно убедиться, что джойстик активируется ДО модели игрока, иначе по имени найден не будет
         
-        //menuButton = GameObject.FindWithTag("OpenMenuButton");
+        //greenButton = GameObject.Find("GreenButtonBTN").GetComponent<Button>();
+        //yellowButton = GameObject.Find("YellowButtonBTN").GetComponent<Button>();
+
+        greenButton = GameObject.Find("GreenButtonIMG");
+        yellowButton = GameObject.Find("YellowButtonIMG");
+
+        // yellowButton.onClick.AddListener(delegate {
+        //     yellowButtonPressed = true;
+        // });
     }
 
     // Update is called once per frame
@@ -94,7 +101,7 @@ public class PlayerScript : MonoBehaviour
             moveVertical = getZJ;
         }
 
-        Debug.Log("Movement X: " + moveHorizontal + ", Movement Y: " + moveVertical);
+        //Debug.Log("Movement X: " + moveHorizontal + ", Movement Y: " + moveVertical);
         //Управление кораблем от стандартных физических клавиш
         //float moveHorizontal = Input.GetAxis("Horizontal");
         //float moveVertical = Input.GetAxis("Vertical");
@@ -111,7 +118,7 @@ public class PlayerScript : MonoBehaviour
 
         playerShip.rotation = Quaternion.Euler(playerShip.velocity.z * tiltPitch, 0, -playerShip.velocity.x * tiltRoll);
 
-        if (Time.time > nextGreenShotTime && Input.GetButton("Fire1"))
+        if (Time.time > nextGreenShotTime && (Input.GetButton("Fire1") || greenButton.GetComponent<WeaponButtons>().WeaponButtonDown))
         {
             Instantiate(laserShotGreen, laserGunGreenLeft.transform.position, Quaternion.Euler(0, leftGunAngle, 0));
             Instantiate(laserShotGreen, laserGunGreenRight.transform.position, Quaternion.Euler(0, rightGunAngle, 0));
@@ -119,7 +126,8 @@ public class PlayerScript : MonoBehaviour
             nextGreenShotTime = Time.time + greenShotDelay;
         }
 
-        if (Time.time > nextYellowShotTime && Input.GetButton("Fire2"))
+        if (Time.time > nextYellowShotTime && (Input.GetButton("Fire2") || yellowButton.GetComponent<WeaponButtons>().WeaponButtonDown))
+        //if (Time.time > nextYellowShotTime && (Input.GetButton("Fire2") || yellowButton.weaponButtonDown))
         {
             Instantiate(laserShotYellow, laserGunYellow.transform.position, Quaternion.identity);
             nextYellowShotTime = Time.time + yellowShotDelay;
@@ -131,8 +139,23 @@ public class PlayerScript : MonoBehaviour
                 Destroy(item);
             }
             */
+            //yellowButtonPressed = false; // обнуляем нажатие клавиши 
         }
     }
+/* 
+    public void ShootGreenLaser()
+    {
+        //
+    }
+    public void ShootYellowLaser()
+    {
+        if (Time.time > nextYellowShotTime)
+        {
+            Instantiate(laserShotYellow, laserGunYellow.transform.position, Quaternion.identity);
+            nextYellowShotTime = Time.time + yellowShotDelay;
+        }
+    }
+ */
 
     private void OnTriggerEnter(Collider other)
     {
