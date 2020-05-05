@@ -92,7 +92,7 @@ public class GameController : MonoBehaviour
             menu.gameObject.SetActive(false);
             isStarted = true;
             gameMenu.gameObject.SetActive(false);
-            handlers.gameObject.SetActive(true);
+            handlers.gameObject.SetActive(true); //активируем джойстик ПЕРЕД созданием игрока (игрок создается в RestartGame())
             RestartGame();
         });
 
@@ -107,17 +107,17 @@ public class GameController : MonoBehaviour
         exitGameButton.onClick.AddListener(delegate { //выход в главное меню
             menu.gameObject.SetActive(true);
             isStarted = false;
-            gameMenu.gameObject.SetActive(false);
-            handlers.gameObject.SetActive(false);
             RestartGame(); // делаем рестарт, чтобы уничтожить всех оставшихся врагов и астероидов
             Destroy(player); // после чего удаляем игрока, т.к. он создается в методе RestartGame()
+            gameMenu.gameObject.SetActive(false);
+            handlers.gameObject.SetActive(false); // отключаем джойстик ПОСЛЕ игрока, иначе возникнет ошибка при поиске объекта джойстика
         });
 
         restartButton.onClick.AddListener(delegate { //перезапуск игры
             menu.gameObject.SetActive(false);
             isStarted = true;
             gameMenu.gameObject.SetActive(false);
-            handlers.gameObject.SetActive(true);
+            handlers.gameObject.SetActive(true); //активируем Джойстик ДО создания игрока
             RestartGame();
         });
     }

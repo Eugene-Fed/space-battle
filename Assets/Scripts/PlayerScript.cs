@@ -16,11 +16,14 @@ public class PlayerScript : MonoBehaviour
     public int shieldHelth; //количество брони от полученного щита
     public int redEnemyLaserPower; //мощность вражеского лазера
     public int asteroidPower; //сила удара астероида
+
+    float moveHorizontal; //переменные для контроля перемещения игрока
+    float moveVertical; //переменные для контроля перемещения игрока
     //времянка
     //public float moveHorizontal;
     //public float moveVertical;
-    public UnityEngine.UI.Text lableVertical;
-    public UnityEngine.UI.Text lableHorizontal;
+    UnityEngine.UI.Text lableVertical;
+    UnityEngine.UI.Text lableHorizontal;
     //удалить
 
     //GameObject menuButton; //кнопка, которая появляется после смерти для выхода в главное меню.
@@ -32,7 +35,7 @@ public class PlayerScript : MonoBehaviour
     public GameObject laserGunGreenLeft;
     public GameObject laserGunGreenRight;
     public GameObject playerExplosion;
-    public GameObject leftJoystick; //левый джойстик для перемещений
+    GameObject leftJoystick; //левый джойстик для перемещений
 
     Rigidbody playerShip;
 
@@ -51,6 +54,12 @@ public class PlayerScript : MonoBehaviour
         leftGunAngle = playerShip.transform.rotation.y - gunAngle; // Задаем угол установки боковых пушек при старте, что бы снизить нагрузку на Update()
         rightGunAngle = playerShip.transform.rotation.y + gunAngle; // Если бы наш Звездолет вращался вокруг оси Y и стрелял по сторонам, выставляли бы по факту из Update()
         GameController.instance.ChangeHealth(health);
+        leftJoystick =  GameObject.Find("LeftJoystick"); //обязательно жуно убедиться, что джойстик активируется ДО модели игрока, иначе по имени найден не будет
+        //temt start
+        //lableHorizontal = UnityEngine.UI.Text.Find("HorizontalLable");
+        //lableVertical = UnityEngine.UI.Text.Find("VerticalLable");
+        //temp end
+        
         //menuButton = GameObject.FindWithTag("OpenMenuButton");
     }
 
@@ -62,20 +71,37 @@ public class PlayerScript : MonoBehaviour
             return;
         }
         
+
+        float getX = Input.GetAxis("Horizontal"); //управление клавишами
+        float getZ = Input.GetAxis("Vertical");
+        //добавить проверку на активность объекта leftJoystick. если объекта не активен (скрыт), то getXJ и getXZ = 0
+        float getXJ = leftJoystick.GetComponent<JoystickMovement>().HorizontalInput(); //управление джойстиком
+        float getZJ = leftJoystick.GetComponent<JoystickMovement>().VerticalInput();
+
+        if (getX != 0)
+        {
+            moveHorizontal = getX;
+        } else
+        {
+            moveHorizontal = getXJ;
+        }
+
+        if (getZ != 0)
+        {
+            moveVertical = getZ;
+        } else
+        {
+            moveVertical = getZJ;
+        }
+
+        Debug.Log("Movement X: " + moveHorizontal + ", Movement Y: " + moveVertical);
         //Управление кораблем от стандартных физических клавиш
         //float moveHorizontal = Input.GetAxis("Horizontal");
         //float moveVertical = Input.GetAxis("Vertical");
 
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
-        //lableHorizontal.text = "Horizontal: " + moveHorizontal * speed;
-        //lableVertical.text = "Vertical: " + moveVertical * speed;
-
         //Управление кораблем от графического джойстика
-        moveHorizontal = leftJoystick.GetComponent<JoystickMovement>().HorizontalInput();
-        //moveHorizontal = leftJoystick.GetComponent<JoystickMovement>().joystickInputX;
-        //float moveVertical = leftJoystick.VerticalInput();
-        //Debug.Log("Movement = X: " + moveHorizontal + ", Y: " + moveVertical);
+        //moveHorizontal = leftJoystick.GetComponent<JoystickMovement>().HorizontalInput();
+        //moveVertical = leftJoystick.GetComponent<JoystickMovement>().VerticalInput();
 
         playerShip.velocity = new Vector3(moveHorizontal, 0, moveVertical) * speed;
 
