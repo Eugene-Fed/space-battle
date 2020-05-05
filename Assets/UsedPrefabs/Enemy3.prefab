@@ -446,7 +446,7 @@ MonoBehaviour:
   minSpeedX: -10
   maxSpeedX: 10
   greenShotDelay: 1.2
-  health: 10
+  health: 15
   shieldHelth: 1
   yellowLaserPower: 4
   greenLaserPower: 2

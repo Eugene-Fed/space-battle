@@ -65,7 +65,7 @@ MonoBehaviour:
   rotationSpeed: 10
   minSpeed: 15
   maxSpeed: 35
-  health: 5
+  health: 2
   yellowLaserPower: 10
   greenLaserPower: 2
   redEnemyLaserPower: 1

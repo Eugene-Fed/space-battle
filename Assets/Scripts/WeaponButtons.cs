@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class WeaponButtons : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    bool weaponButtonDown;
+    bool weaponButtonDown = false; //пока оставляем Public, чтобы использовать в PlayerScript напрямую, дабы убрать ошибку в логах
 
     public bool WeaponButtonDown
     {
@@ -14,6 +14,15 @@ public class WeaponButtons : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         {
             return weaponButtonDown;
         }
+        set 
+        {
+            weaponButtonDown = value;
+        }
+    }
+
+    void Start()
+    {
+        weaponButtonDown = false;
     }
 
     //void OnMouseDown()

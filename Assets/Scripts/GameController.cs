@@ -49,8 +49,8 @@ public class GameController : MonoBehaviour
 
     public void ActiveMenuButton()
     {
-        gameMenu.gameObject.SetActive(true);
         handlers.gameObject.SetActive(false);
+        gameMenu.gameObject.SetActive(true);
     }
 
     void RestartGame() //очищает сцену перед запуском новой игры
@@ -72,6 +72,11 @@ public class GameController : MonoBehaviour
         }
         GameObject[] shields = GameObject.FindGameObjectsWithTag("Shield"); // поиск массива объектов
         foreach (GameObject item in shields)
+        {
+            Destroy(item);
+        }
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player"); // поиск массива объектов
+        foreach (GameObject item in players)
         {
             Destroy(item);
         }
@@ -105,20 +110,22 @@ public class GameController : MonoBehaviour
         });
 
         exitGameButton.onClick.AddListener(delegate { //выход в главное меню
-            menu.gameObject.SetActive(true);
             isStarted = false;
             RestartGame(); // делаем рестарт, чтобы уничтожить всех оставшихся врагов и астероидов
-            Destroy(player); // после чего удаляем игрока, т.к. он создается в методе RestartGame()
+            Debug.Log("Before Destroy player");
+            //Destroy(player); // после чего удаляем игрока, т.к. он создается в методе RestartGame()
+            Debug.Log("After Destroy player");
             gameMenu.gameObject.SetActive(false);
             handlers.gameObject.SetActive(false); // отключаем джойстик ПОСЛЕ игрока, иначе возникнет ошибка при поиске объекта джойстика
+            menu.gameObject.SetActive(true);
         });
 
         restartButton.onClick.AddListener(delegate { //перезапуск игры
             menu.gameObject.SetActive(false);
-            isStarted = true;
             gameMenu.gameObject.SetActive(false);
             handlers.gameObject.SetActive(true); //активируем Джойстик ДО создания игрока
             RestartGame();
+            isStarted = true;
         });
     }
 

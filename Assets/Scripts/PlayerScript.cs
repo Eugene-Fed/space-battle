@@ -64,6 +64,8 @@ public class PlayerScript : MonoBehaviour
 
         greenButton = GameObject.Find("GreenButtonIMG");
         yellowButton = GameObject.Find("YellowButtonIMG");
+        greenButton.GetComponent<WeaponButtons>().WeaponButtonDown = false;
+        yellowButton.GetComponent<WeaponButtons>().WeaponButtonDown = false;
 
         // yellowButton.onClick.AddListener(delegate {
         //     yellowButtonPressed = true;
@@ -118,7 +120,8 @@ public class PlayerScript : MonoBehaviour
 
         playerShip.rotation = Quaternion.Euler(playerShip.velocity.z * tiltPitch, 0, -playerShip.velocity.x * tiltRoll);
 
-        if (Time.time > nextGreenShotTime && (Input.GetButton("Fire1") || greenButton.GetComponent<WeaponButtons>().WeaponButtonDown))
+        //if (Time.time > nextGreenShotTime && (Input.GetButton("Fire1") || greenButton.GetComponent<WeaponButtons>().WeaponButtonDown))
+        if (Time.time > nextGreenShotTime && greenButton.GetComponent<WeaponButtons>().WeaponButtonDown)
         {
             Instantiate(laserShotGreen, laserGunGreenLeft.transform.position, Quaternion.Euler(0, leftGunAngle, 0));
             Instantiate(laserShotGreen, laserGunGreenRight.transform.position, Quaternion.Euler(0, rightGunAngle, 0));
@@ -126,8 +129,8 @@ public class PlayerScript : MonoBehaviour
             nextGreenShotTime = Time.time + greenShotDelay;
         }
 
-        if (Time.time > nextYellowShotTime && (Input.GetButton("Fire2") || yellowButton.GetComponent<WeaponButtons>().WeaponButtonDown))
-        //if (Time.time > nextYellowShotTime && (Input.GetButton("Fire2") || yellowButton.weaponButtonDown))
+        //if (Time.time > nextYellowShotTime && (Input.GetButton("Fire2") || yellowButton.GetComponent<WeaponButtons>().WeaponButtonDown))
+        if (Time.time > nextYellowShotTime && yellowButton.GetComponent<WeaponButtons>().WeaponButtonDown)
         {
             Instantiate(laserShotYellow, laserGunYellow.transform.position, Quaternion.identity);
             nextYellowShotTime = Time.time + yellowShotDelay;
@@ -139,7 +142,6 @@ public class PlayerScript : MonoBehaviour
                 Destroy(item);
             }
             */
-            //yellowButtonPressed = false; // обнуляем нажатие клавиши 
         }
     }
 /* 
