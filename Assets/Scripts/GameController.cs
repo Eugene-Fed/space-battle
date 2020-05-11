@@ -9,19 +9,24 @@ public class GameController : MonoBehaviour
     public UnityEngine.UI.Text scoreRecordLable;
     public UnityEngine.UI.Image menu;
     public UnityEngine.UI.Button startButton;
-    public UnityEngine.UI.Button exitGameButton;
+    public UnityEngine.UI.Button mainMenuButton;
     public UnityEngine.UI.Button restartButton;
     public UnityEngine.UI.Button closeCredits;
     public UnityEngine.UI.Button openCredits;
+    public UnityEngine.UI.Button burgerButton;
+    public UnityEngine.UI.Button exitGameButton;
+    public UnityEngine.UI.Button closeMenuButton; //кнопка выхода из бургер меню
 
     public GameObject player;
     public GameObject gameMenu;
+    public GameObject burgerMenu;
     public GameObject creditsGrid;
     public GameObject handlers; //папка элементов управления персонажем
     public GameObject leftJoystick; //левый джойстик для перемещений
 
 
     public bool isStarted = false;
+    public bool isBurgerMenuOpened = false; //нужно для правильной установки игры в паузу
     
     
     int score = 0;
@@ -88,7 +93,8 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        menu.gameObject.SetActive(true);
+        menu.gameObject.SetActive(true); //при запуске активируем главное меню
+        burgerMenu.SetActive(false); //и деактивируем меню Бургера
         creditsGrid.gameObject.SetActive(false);
         handlers.gameObject.SetActive(false);
         instance = this;
@@ -109,7 +115,7 @@ public class GameController : MonoBehaviour
             creditsGrid.gameObject.SetActive(false);
         });
 
-        exitGameButton.onClick.AddListener(delegate { //выход в главное меню
+        mainMenuButton.onClick.AddListener(delegate { //выход в главное меню
             isStarted = false;
             RestartGame(); // делаем рестарт, чтобы уничтожить всех оставшихся врагов и астероидов
             Debug.Log("Before Destroy player");
@@ -120,12 +126,31 @@ public class GameController : MonoBehaviour
             menu.gameObject.SetActive(true);
         });
 
+        burgerButton.onClick.AddListener(delegate { //выход в главное меню
+            //isStarted = false;
+            isBurgerMenuOpened = true; //нужно будет продумать как паузить игру
+            //handlers.gameObject.SetActive(false); // отключаем джойстик ПОСЛЕ игрока, иначе возникнет ошибка при поиске объекта джойстика
+            burgerMenu.SetActive(true);
+            creditsGrid.gameObject.SetActive(false);
+        });
+
         restartButton.onClick.AddListener(delegate { //перезапуск игры
             menu.gameObject.SetActive(false);
             gameMenu.gameObject.SetActive(false);
             handlers.gameObject.SetActive(true); //активируем Джойстик ДО создания игрока
             RestartGame();
             isStarted = true;
+        });
+
+        exitGameButton.onClick.AddListener(delegate {
+            Debug.Log("ExitGame button clicked");
+            burgerMenu.SetActive(false);
+            Application.Quit();
+        });
+
+        closeMenuButton.onClick.AddListener(delegate {
+            burgerMenu.SetActive(false);
+            isBurgerMenuOpened = false;
         });
     }
 

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ExitGame : MonoBehaviour
 {
-    //public GameObject btnMnuExit; //delete this variable declatation
+    //######## сейчас не используется как отдельный класс. используется функция выхода из GameController
     public GameObject MnuTop;
 
     void OnMouseDown ()
