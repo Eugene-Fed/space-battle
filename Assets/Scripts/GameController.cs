@@ -28,9 +28,11 @@ public class GameController : MonoBehaviour
     public bool isStarted = false;
     public bool isBurgerMenuOpened = false; //нужно для правильной установки игры в паузу
     
-    
+    SaveGame saveGame = new SaveGame();
+    LoadGame loadGame = new LoadGame();
+
     int score = 0;
-    int scoreRecord = 0; //записывается последний лучший результат
+    int maxScore; //записывается последний лучший результат
     //int health = 0;
 
     public static GameController instance;
@@ -39,10 +41,11 @@ public class GameController : MonoBehaviour
     {
         score += increment;
         scoreLable.text = "Score: " + score;
-        if (score > scoreRecord)
+        if (score > maxScore)
         {
-            scoreRecord = score;
-            scoreRecordLable.text = "Best Score: " + scoreRecord;
+            maxScore = score;
+            scoreRecordLable.text = "Best Score: " + maxScore;
+            saveGame.MaxScore = maxScore;
         } 
     }
 
@@ -60,6 +63,9 @@ public class GameController : MonoBehaviour
 
     void RestartGame() //очищает сцену перед запуском новой игры
     {
+        saveGame.MaxScore = maxScore;
+        saveGame.Save();
+
         GameObject[] asteroids = GameObject.FindGameObjectsWithTag("Asteroid"); // поиск массива объектов
         foreach (GameObject item in asteroids)
         {
@@ -93,6 +99,12 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        loadGame.LoadSavedGame();
+        maxScore = loadGame.MaxScore;
+        scoreRecordLable.text = "Best Score: " + maxScore; //принудительно изменяет отображаемое количество очков при старте, после загрузки
+
+        Debug.Log("maxScore in GameController after load game = " + maxScore.ToString());
+        
         menu.gameObject.SetActive(true); //при запуске активируем главное меню
         burgerMenu.SetActive(false); //и деактивируем меню Бургера
         creditsGrid.gameObject.SetActive(false);
