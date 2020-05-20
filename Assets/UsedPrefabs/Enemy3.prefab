@@ -441,8 +441,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f17628e657edfe8489edbeaae7aa6e9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSpeed: 15
-  maxSpeed: 30
+  minSpeed: 10
+  maxSpeed: 25
   minSpeedX: -10
   maxSpeedX: 10
   greenShotDelay: 1.2

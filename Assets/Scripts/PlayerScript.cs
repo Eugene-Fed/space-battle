@@ -120,8 +120,14 @@ public class PlayerScript : MonoBehaviour
 
         playerShip.rotation = Quaternion.Euler(playerShip.velocity.z * tiltPitch, 0, -playerShip.velocity.x * tiltRoll);
 
+        //#Стрельба остновным орудием при нажатии на физическую клавишу Fire1 или зелену кнопку интерфейса
         //if (Time.time > nextGreenShotTime && (Input.GetButton("Fire1") || greenButton.GetComponent<WeaponButtons>().WeaponButtonDown))
-        if (Time.time > nextGreenShotTime && greenButton.GetComponent<WeaponButtons>().WeaponButtonDown)
+
+        //#Стрельба основным орудием при нажатии на кнопку интерфейса и отсутствие реакции на физические клавиши
+        //if (Time.time > nextGreenShotTime && greenButton.GetComponent<WeaponButtons>().WeaponButtonDown)
+
+        //#Автоматическая стрельба основным орудием
+        if (Time.time > nextGreenShotTime)
         {
             Instantiate(laserShotGreen, laserGunGreenLeft.transform.position, Quaternion.Euler(0, leftGunAngle, 0));
             Instantiate(laserShotGreen, laserGunGreenRight.transform.position, Quaternion.Euler(0, rightGunAngle, 0));
@@ -129,8 +135,8 @@ public class PlayerScript : MonoBehaviour
             nextGreenShotTime = Time.time + greenShotDelay;
         }
 
-        //if (Time.time > nextYellowShotTime && (Input.GetButton("Fire2") || yellowButton.GetComponent<WeaponButtons>().WeaponButtonDown))
-        if (Time.time > nextYellowShotTime && yellowButton.GetComponent<WeaponButtons>().WeaponButtonDown)
+        if (Time.time > nextYellowShotTime && (Input.GetButton("Fire2") || yellowButton.GetComponent<WeaponButtons>().WeaponButtonDown))
+        //if (Time.time > nextYellowShotTime && yellowButton.GetComponent<WeaponButtons>().WeaponButtonDown)
         {
             Instantiate(laserShotYellow, laserGunYellow.transform.position, Quaternion.identity);
             nextYellowShotTime = Time.time + yellowShotDelay;
