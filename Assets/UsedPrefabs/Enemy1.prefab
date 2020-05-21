@@ -157,11 +157,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minSpeed: 10
-  maxSpeed: 30
+  maxSpeed: 22
   minSpeedX: -10
   maxSpeedX: 10
   greenShotDelay: 1
-  health: 7
+  health: 12
   shieldHelth: 1
   yellowLaserPower: 4
   greenLaserPower: 2

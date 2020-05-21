@@ -62,9 +62,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d910564754ea8428e749f4fbdb6f17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 15
+  rotationSpeed: 17
   minSpeed: 15
-  maxSpeed: 30
+  maxSpeed: 25
   health: 10
   yellowLaserPower: 10
   greenLaserPower: 2
